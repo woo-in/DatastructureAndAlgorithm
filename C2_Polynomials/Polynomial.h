@@ -1,27 +1,23 @@
 #ifndef POLYNOMIAL_H
 #define POLYNOMIAL_H
 
-/*  header about polynomial */
-/*  2023.06.09 made by woo_in  */
-
 #include <stdbool.h>
-typedef struct polynomial_Type* polynomial;
-typedef double coefficient;
-typedef int exponent;
+typedef struct polynomial_Type* Polynomial;
+typedef double Coefficient;
+typedef int Exponent;
 
-
-polynomial make_Zero_Polynomial();
-bool is_Zero_Polynomial(const polynomial poly);
-coefficient return_Coef_Polynomial(const polynomial poly, const exponent expon);
-exponent return_Lead_Polynomial(const polynomial poly);
-void attach_Polynomial(polynomial poly, const coefficient coef, const exponent expon);
-void modify_Zero_Polynomial(polynomial poly, const exponent expon);
-void single_Mult_Polynomial(polynomial poly, const coefficient coef, const exponent expon);
-polynomial add_Polynomial(const polynomial poly1, const  polynomial poly2);
-polynomial mult_Polynomial(const polynomial poly1, const  polynomial poly2);
-void print_All_Polynomial(const polynomial poly);
-double result_Polynomial(const polynomial poly, const double inpt);
-void remove_Polynomial(polynomial poly);
+Polynomial MakeZeroPolynomial();
+bool IsZeroPolynomial(const Polynomial poly);
+Coefficient CoefPolynomial(const Polynomial poly, const Exponent expon);
+Exponent LeadExpPolynomial(const Polynomial poly);
+void AttachPolynomial(Polynomial poly, const Coefficient coef, const Exponent expon);
+void ModifyCoefZeroPolynomial(Polynomial poly, const Exponent expon);
+void SingleMultiplyPolynomial(Polynomial poly, const Coefficient coef, const Exponent expon);
+Polynomial AddTwoPolynomial(const Polynomial poly1, const  Polynomial poly2);
+Polynomial MultiplyTwoPolynomial(const Polynomial poly1, const  Polynomial poly2);
+void PrintPolynomial(const Polynomial poly);
+double ResultPolynomial(const Polynomial poly, const double variable);
+void RemovePolynomial(Polynomial poly);
 
 #endif 
 

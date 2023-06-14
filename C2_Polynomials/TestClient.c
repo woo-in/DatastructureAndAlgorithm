@@ -2,9 +2,29 @@
 #include "Polynomial.h"
 
 int main() {
-	polynomial a1 = make_Zero_Polynomial();
-	attach_Polynomial(a1, 2, 2);
-	print_All_Polynomial(a1);
+	
+	Polynomial a = MakeZeroPolynomial();
+	AttachPolynomial(a, 1, 0);
+	AttachPolynomial(a, 2, 1);
+
+	Polynomial b = MakeZeroPolynomial();
+	AttachPolynomial(b, 2, 0);
+	AttachPolynomial(b, 1, 1);
+
+	PrintPolynomial(a);
+	PrintPolynomial(b);
+
+	Polynomial c = AddTwoPolynomial(a, b);
+
+	PrintPolynomial(c);
+
+	c = MultiplyTwoPolynomial(a, b);
+
+	PrintPolynomial(c);
+
+	RemovePolynomial(a);
+	RemovePolynomial(b);
+	RemovePolynomial(c);
 
 	return 0;
 }
