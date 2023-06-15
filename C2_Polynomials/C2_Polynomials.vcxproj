@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="PolynomialArrayVersion.c" />
+    <ClCompile Include="PolynomialArrayVersion1.c" />
     <ClCompile Include="TestClient.c" />
   </ItemGroup>
   <ItemGroup>

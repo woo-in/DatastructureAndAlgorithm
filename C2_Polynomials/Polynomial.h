@@ -2,7 +2,7 @@
 #define POLYNOMIAL_H
 
 #include <stdbool.h>
-typedef struct polynomial_Type* Polynomial;
+typedef struct PolynomialType * Polynomial;
 typedef double Coefficient;
 typedef int Exponent;
 

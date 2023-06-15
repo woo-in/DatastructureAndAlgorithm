@@ -4,7 +4,7 @@
 
 #define MAX_DEGREE 100 // possible maximum exponent of polynomial 
 
-struct polynomial_Type {
+struct PolynomialType {
 	Exponent degree; // the highest exponent what is not 0  ; if 0 can f(x) = 0
 
 	Coefficient coef[MAX_DEGREE + 1];
