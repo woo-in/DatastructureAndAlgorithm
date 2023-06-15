@@ -4,12 +4,12 @@
 int main() {
 	
 	Polynomial a = MakeZeroPolynomial();
-	AttachPolynomial(a, 1, 0);
-	AttachPolynomial(a, 2, 1);
+	SingleAddPolynomial(a, 1, 0);
+	SingleAddPolynomial(a, 2, 1);
 
 	Polynomial b = MakeZeroPolynomial();
-	AttachPolynomial(b, 2, 0);
-	AttachPolynomial(b, 1, 1);
+	SingleAddPolynomial(b, 2, 0);
+	SingleAddPolynomial(b, 1, 1);
 
 	PrintPolynomial(a);
 	PrintPolynomial(b);
@@ -19,7 +19,10 @@ int main() {
 	PrintPolynomial(c);
 
 	c = MultiplyTwoPolynomial(a, b);
-
+	ModifyCoefZeroPolynomial(c, 1);
+	ModifyCoefZeroPolynomial(c, 2);
+	ModifyCoefZeroPolynomial(c, 0);
+	ModifyCoefZeroPolynomial(c, 3);
 	PrintPolynomial(c);
 
 	RemovePolynomial(a);

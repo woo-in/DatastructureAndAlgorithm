@@ -17,7 +17,7 @@ struct polynomial_Type {
 	*/
 };
 
-
+// O(1)
 Polynomial MakeZeroPolynomial(){
 	Polynomial new_poly = calloc(sizeof(*new_poly), 1);
 	if (new_poly == NULL) {
@@ -26,14 +26,14 @@ Polynomial MakeZeroPolynomial(){
 	}
 	return new_poly;
 }
-
+// O(1)
 bool IsZeroPolynomial(const Polynomial poly) {
 	if (poly->degree == 0 && poly->coef[MAX_DEGREE] == 0.0)
 		return true;
 	else
 		return false;
 }
-
+// O(1)
 Coefficient CoefPolynomial(const Polynomial poly, const Exponent expon){
 
 	if (expon < 0) {
@@ -49,11 +49,13 @@ Coefficient CoefPolynomial(const Polynomial poly, const Exponent expon){
 	return result_coef;
 }
 
+// O(1)
 Exponent LeadExpPolynomial(const Polynomial poly){
 	return poly->degree;
 }
 
-void AttachPolynomial(Polynomial poly, const Coefficient coef, const Exponent expon){
+// O(1)
+void SingleAddPolynomial(Polynomial poly, const Coefficient coef, const Exponent expon) {
 	if (expon > MAX_DEGREE) {
 		printf("ERROR : EXPONENT IN VALID VALUE ( BIGGER THAN SETTED MAX : %d ) IN <attach_Polynomial> FUNCTION \n\n", MAX_DEGREE);
 		exit(1);
@@ -66,24 +68,7 @@ void AttachPolynomial(Polynomial poly, const Coefficient coef, const Exponent ex
 
 }
 
-void ModifyCoefZeroPolynomial(Polynomial poly, const Exponent expon) {
-	if (expon > MAX_DEGREE) {
-		printf("ERROR : EXPONENT INVALID VALUE ( BIGGER THAN SETTED MAX : %d ) IN <modify_Zero_Polynomial> function> \n\n", MAX_DEGREE);
-		exit(1);
-	}
-
-	poly->coef[MAX_DEGREE - expon] = 0.0;
-
-	/* renew degree (LeadExp)  */
-	if (expon == poly->degree) {
-		poly->degree = 0;
-		for (int i = 0; i < expon; i++)
-			if (poly->coef[MAX_DEGREE - i] != 0.0) {
-				poly->degree = i;
-			}
-	}
-}
-
+// O(N) ; N : degree in poly
 void SingleMultiplyPolynomial(Polynomial poly, const Coefficient coef, const Exponent expon) {
 	if (expon < 0) {
 		printf("ERROR : EXPONENT INVALID VALUE ( SMALLER THAN 0 ) IN <coef_Polynomial> FUNCTION \n\n");
@@ -106,13 +91,34 @@ void SingleMultiplyPolynomial(Polynomial poly, const Coefficient coef, const Exp
 	poly->degree += expon;
 }
 
+// O(N) ; N : degree in poly
+void ModifyCoefZeroPolynomial(Polynomial poly, const Exponent expon) {
+	if (expon > MAX_DEGREE) {
+		printf("ERROR : EXPONENT INVALID VALUE ( BIGGER THAN SETTED MAX : %d ) IN <modify_Zero_Polynomial> function> \n\n", MAX_DEGREE);
+		exit(1);
+	}
+
+	poly->coef[MAX_DEGREE - expon] = 0.0;
+
+	/* renew degree (LeadExp)  */
+	if (expon == poly->degree) {
+		poly->degree = 0;
+		for (int i = expon - 1; i >= 0; i--)
+			if (poly->coef[MAX_DEGREE - i] != 0.0) {
+				poly->degree = i;
+				break; 
+			}
+	}
+}
+
+// O(N) N ; max(degree in poly1 , degree in poly2) 
 Polynomial AddTwoPolynomial(const Polynomial poly1, const  Polynomial poly2) {
 	Polynomial result_poly = MakeZeroPolynomial();
 	Exponent now_exp = 0;
 
 	/* add two poly in result */
 	while (now_exp <= poly1->degree || now_exp <= poly2->degree) {
-		AttachPolynomial(result_poly, poly1->coef[MAX_DEGREE - now_exp] + poly2->coef[MAX_DEGREE - now_exp], now_exp);
+		SingleAddPolynomial(result_poly, poly1->coef[MAX_DEGREE - now_exp] + poly2->coef[MAX_DEGREE - now_exp], now_exp);
 		now_exp++;
 	}
 
@@ -123,6 +129,7 @@ Polynomial AddTwoPolynomial(const Polynomial poly1, const  Polynomial poly2) {
 	return result_poly;
 }
 
+// O(N*M) ; N : degree in poly1 , M : degree in poly2 
 Polynomial MultiplyTwoPolynomial(const Polynomial poly1, const  Polynomial poly2) {
 	Polynomial result_poly = MakeZeroPolynomial();
 
@@ -131,7 +138,7 @@ Polynomial MultiplyTwoPolynomial(const Polynomial poly1, const  Polynomial poly2
 		if (poly1->coef[MAX_DEGREE - i] != 0) {
 			for (int j = 0; j <= poly2->degree; j++) {
 				if (poly2->coef[MAX_DEGREE - j] != 0) {
-					AttachPolynomial(result_poly, poly1->coef[MAX_DEGREE - i] * poly2->coef[MAX_DEGREE - j], i + j);
+					SingleAddPolynomial(result_poly, poly1->coef[MAX_DEGREE - i] * poly2->coef[MAX_DEGREE - j], i + j);
 				}
 			}
 		}
@@ -143,6 +150,7 @@ Polynomial MultiplyTwoPolynomial(const Polynomial poly1, const  Polynomial poly2
 	return result_poly;
 }
 
+// O(N) ; N : degree in poly
 void PrintPolynomial(const Polynomial poly) {
 
 	/* Lead exp poly print */
@@ -164,6 +172,7 @@ void PrintPolynomial(const Polynomial poly) {
 	printf("\n");
 }
 
+// O(N) ; N : degree in poly
 double ResultPolynomial(const Polynomial poly, const double variable) {
 	double resultv = 0.0;
 	double mulv = 1.0;
@@ -179,6 +188,7 @@ double ResultPolynomial(const Polynomial poly, const double variable) {
 	return resultv;
 }
 
+// O(1) 
 void RemovePolynomial(Polynomial poly) {
 	free(poly);
 	printf("REMOVE SUCCESS !!\n");
