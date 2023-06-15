@@ -3,7 +3,7 @@
 
 - Written in Microsoft Visual Studio C ( C89 + Microsoft expansion ). 
 
-- Use by referring to ADT document which includes specification and time complexity of data structure and algorithm. 
+- Use by referring to ADT document which includes specification of data structure and algorithm. 
 
 - Determine the identifier by adhering to the following.
 
