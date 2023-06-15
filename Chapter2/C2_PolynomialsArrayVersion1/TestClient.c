@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "Polynomial.h"
+#include "polynomialArrayVersion1.h"
 
 int main() {
 	

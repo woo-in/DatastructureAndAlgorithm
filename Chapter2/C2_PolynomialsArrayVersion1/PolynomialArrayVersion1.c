@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "polynomial.h"
+#include "polynomialArrayVersion1.h"
 
 #define MAX_DEGREE 100 // possible maximum exponent of polynomial 
 
