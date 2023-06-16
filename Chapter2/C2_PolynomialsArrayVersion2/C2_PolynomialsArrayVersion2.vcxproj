@@ -127,7 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Polynomial.h" />
+    <ClCompile Include="PolynomialArrayVersion2.c" />
+    <ClCompile Include="PolynomialArrayVersion2.h" />
+    <ClCompile Include="TestClient.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
